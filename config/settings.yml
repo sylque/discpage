@@ -1,0 +1,28 @@
+plugins:
+  discpage_enabled:
+    refresh: true
+    client: true
+    default: false
+  discpage_hide_tags:
+    refresh: true
+    client: true
+    default: false
+  discpage_page_categories:
+    refresh: true
+    client: true
+    type: category_list
+    default: ""
+  discpage_balloon_category:
+    refresh: true
+    client: true
+    type: category_list
+    default: ""
+  discpage_never_bump_pages:
+    refresh: true
+    client: false
+    default: false
+  discpage_hide_sugg_topics:
+    refresh: true
+    client: true
+    default: false
+  

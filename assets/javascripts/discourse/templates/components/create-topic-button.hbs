@@ -1,0 +1,17 @@
+{{#if currentUser}}
+  {{d-button
+    class="btn-default"
+    id="create-topic"
+    action=action
+    icon="plus"
+    disabled=disabled
+    label=label}}
+{{else}}
+  {{d-button
+    class="btn-default"
+    id="create-topic"
+    action=(route-action "showLogin")
+    icon="plus"
+    disabled=false
+    label=label}}
+{{/if}}

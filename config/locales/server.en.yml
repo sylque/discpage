@@ -1,0 +1,8 @@
+en:
+  site_settings:
+    discpage_enabled: 'Enable the DiscPage plugin'
+    discpage_hide_tags: 'Hide tags everywhere'
+    discpage_page_categories: 'Categories whose topics are considered static pages'
+    discpage_balloon_category: 'Category applied to topics associated with orange balloons'
+    discpage_never_bump_pages: 'Never bump static pages'
+    discpage_hide_sugg_topics: 'Hide suggested topics at the bottom of orange balloon topic lists'

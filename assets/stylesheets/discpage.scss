@@ -1,0 +1,591 @@
+/*******************************************************************************
+	Adapt Discourse to DiscPage layouts
+*******************************************************************************/
+
+/* Disable centered header */
+html.dpg header.d-header .wrap {
+  margin: unset;
+  max-width: none;
+  /* With max-width:none, the hamburger menu is now sticked to the right side 
+  of the window. Unfortunately, when opened, the hamburger menu goes outside of 
+  the right side of the window. So we need to increase x-padding from 8px to 10px */
+  padding: 0px 10px;
+}
+
+html.dpg[data-dpg-layout='0'],
+html.dpg[data-dpg-layout='2'] {
+  overflow-y: hidden;
+}
+
+/*
+Don't do that. Discourse default behavior is to keep the scroll bar greyed out,
+which is nice because it prevents jerks when window width changes
+html.dpg[data-dpg-layout="3"] {
+    overflow-y: auto;
+}
+*/
+
+/*******************************************************************************
+	Right
+*******************************************************************************/
+
+html.dpg[data-dpg-layout='0'] #dpg-right,
+html.dpg[data-dpg-layout='2'] #dpg-right {
+  display: none;
+}
+
+html.dpg[data-dpg-layout='3'] #dpg-right {
+  padding-left: 23px;
+}
+
+html.dpg[data-dpg-layout='3'].dpg-wide #dpg-right {
+  padding-left: 50%;
+}
+
+/*******************************************************************************
+	Container for the left panel and the split bar
+*******************************************************************************/
+
+/* For layout 0 and 2 */
+html.dpg #dpg-container {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  /* DIrection = row. Needed for the split bar */
+  z-index: 100;
+  overflow: hidden;
+  /* Required to hide the #dpg-ios-wrapper when hidden */
+}
+
+/* For layout 1 */
+html.dpg[data-dpg-layout='1'] #dpg-container {
+  right: 100%;
+}
+
+/* For layout 3. 23px is the split bar */
+html.dpg[data-dpg-layout='3'] #dpg-container {
+  right: calc(100% - 23px);
+}
+
+html.dpg[data-dpg-layout='3'].dpg-wide #dpg-container {
+  right: 50%;
+}
+
+/*******************************************************************************
+	Left
+*******************************************************************************/
+
+/* Fix for "iOs: no scrolling in iframe". See:
+https          ://stackoverflow.com/questions/43262156/cant-scroll-iframe-on-mobile-ios-safari */
+/*
+html.dpg #dpg-ios-wrapper {    
+  flex                      : 1 0 0px;
+  display                   : flex;
+  overflow                  : auto; // For iOs iframe scrolling
+  -webkit-overflow-scrolling: touch; // For iOs iframe scrolling
+}
+*/
+
+/* Fix for "iOS: wrong iframe content size". See:
+https          ://stackoverflow.com/questions/23083462/how-to-get-an-iframe-to-be-responsive-in-ios-safari
+DOESN'T        ::-webkit-scrollbar-track
+*/
+/*
+html.dpg #dpg-ios-wrapper > iframe {
+  width    : 1px;
+  min-width: 100%;  
+}
+*/
+
+html.dpg #dpg-left {
+  flex: 1 0 0px;
+  overflow: auto;
+}
+
+// No need for this, but sounds cleaner
+html.dpg[data-dpg-layout='3']:not(.dpg-wide) #dpg-left {
+  display: none;
+}
+
+/*******************************************************************************
+	Split bar
+*******************************************************************************/
+
+html.dpg #dpg-splitbar {
+  flex: 0 0 23px;
+  background-color: rgb(0, 111, 81);
+  flex-direction: column;
+  cursor: pointer;
+  display: none;
+  user-select: none;
+  /* Prevent accidental selection of button text */
+}
+
+html.dpg[data-dpg-layout='2'] #dpg-splitbar,
+html.dpg[data-dpg-layout='3'] #dpg-splitbar {
+  display: flex;
+}
+
+html.dpg.no-touch #dpg-splitbar:hover {
+  background-color: lightgrey;
+}
+
+html.dpg #dpg-splitbar-text {
+  color: white;
+  font-size: 28px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  /* Putting 1 instead of 0.9 causes a strange bug in Chrome, when hovering the right limit of the text */
+  transform: scale(0.9, 2.5);
+  text-align: center;
+}
+
+html.dpg.no-touch #dpg-splitbar:hover #dpg-splitbar-text {
+  color: rgb(0, 111, 81);
+}
+
+/* Flip the > character to turn it to < */
+html.dpg:not([data-dpg-layout='3']) #dpg-splitbar-text {
+  transform: scale(-0.9, 2.5) !important;
+}
+
+/*******************************************************************************
+	Ghost
+*******************************************************************************/
+
+html.dpg #dpg-ghost {
+  position: fixed;
+  top: 60px;
+  left: 100%;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  z-index: 1000;
+  animation-duration: 200ms;
+  animation-timing-function: linear;
+}
+
+html.dpg #dpg-ghost .dpg-ghost-splitbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 23px;
+  background-color: rgb(0, 111, 81);
+}
+
+/*******************************************************************************
+	Debug mode
+*******************************************************************************/
+
+/* Debug mode */
+html:not(.dpg) #dpg-container,
+html:not(.dpg) #dpg-ghost {
+  display: none;
+}
+
+html:not(.dpg) #toggle-hamburger-menu,
+html:not(.dpg) .dpg-on-off {
+  background-color: red;
+}
+
+/*******************************************************************************
+	Static pages
+*******************************************************************************/
+
+#dpg-left #main-outlet {
+  padding-top: 0px;
+}
+
+#dpg-left .cooked {
+  overflow: visible;
+  /* So that subsection highlighting is visible */
+}
+
+#dpg-left .topic-body {
+  /*
+  max-width: calc(690px + (11px * 2));
+  */
+  width: 100%;
+  /* To remove right margin in small width view */
+}
+
+/*Button */
+.dpg-page-content .dpg-buttons {
+  position: sticky;
+  top: 8px;
+  /* Required */
+  height: 0px;
+  padding: 0px 4px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.4;
+}
+
+.dpg-buttons.selected {
+  opacity: 0.8;
+}
+
+.dpg-page-content .dpg-buttons .btn {
+  padding: 6px 8px;
+}
+
+.dpg-buttons.selected #dpg-show-rev-nav {
+  background-color: orange;
+}
+
+html:not([data-dpg-layout='0']) .dpg-buttons #dpg-edit-title-button,
+html:not([data-dpg-layout='0']) .dpg-buttons #dpg-edit-page-button {
+  display: none;
+}
+
+.dpg-buttons > .dpg-buttons-center > .dpg-date {
+  background-color: orange;
+  display: inline-block;
+  line-height: 30px;
+  padding: 0px 5px;
+}
+
+/*******************************************************************************
+	Hide DiscPage Tags
+*******************************************************************************/
+
+/* Hide dpg tags in tag filter dropdown */
+html.dpg li[data-name^='dpg-'] {
+  display: none;
+}
+
+/* Hide dpg tags in tag chooser */
+html.dpg .mini-tag-chooser div[data-name^='dpg-'] > span.name,
+html.dpg .mini-tag-chooser .selected-tag[data-value^='dpg-'] {
+  display: none !important;
+}
+
+/* Hide dpg tags everywhere else */
+/* NOTICE THAT IT DOESN'T WORK WELL IN THE TAGS PAGE */
+html.dpg a.discourse-tag[data-tag-name^='dpg-'] {
+  display: none !important;
+}
+
+/*******************************************************************************
+	Hide all tags (setting option)
+*******************************************************************************/
+
+html.dpg.dpg-hide-tags .tag-drop,
+html.dpg.dpg-hide-tags .mini-tag-chooser,
+html.dpg.dpg-hide-tags .discourse-tag,
+html.dpg.dpg-hide-tags .widget-link[title="Tags"] {
+  display: none;
+}
+
+/*******************************************************************************
+	Balloon topic categories
+*******************************************************************************/
+
+/* When the admin has set an automatic balloon topic category, then the balloon 
+category is hidden and disabled everywhere */
+
+// MARCHE PAS BIEN !!!!!!!!!!!
+// SI on change de page en laissant le composer ouvert, le selecteur de catégories réapparrait
+// Hide the category selection field in the composer
+html.dpg.dpg-tag.dpg-hide-balloon-cat .composer-fields .category-input {
+  display: none !important;
+}
+
+// In balloon tag pages, hide categories in topic lists
+html.dpg.dpg-tag.dpg-hide-balloon-cat .link-bottom-line a.badge-wrapper {
+  display: none !important;
+}
+
+// In balloon topic pages
+html.dpg.dpg-topic.dpg-hide-balloon-cat {
+  // Hide the category selection field when editing a topic. This prevents the
+  // user from changing the category when creating/editing a topic.
+  .edit-topic-title .category-chooser {
+    display: none !important;
+  }
+
+  // Hide the category in the Discourse header (when scrolling down a long
+  // balloon topic)
+  .d-header .categories-wrapper {
+    display: none !important;
+  }
+}
+
+/*******************************************************************************
+	In tag page
+*******************************************************************************/
+
+/* Hide the category breadcrumb, the tag breadcrumb and the "Categories" menu */
+html.dpg.dpg-tag section.navigation-container {
+  .category-breadcrumb,
+  .tag-show-heading,
+  #navigation-bar a[href="/categories"] {
+    display: none;
+  }
+}
+
+/* Cancel left margin of next sibling */
+html.dpg.dpg-topic.dpg-hide-balloon-cat
+  .edit-topic-title
+  .category-chooser
+  + div {
+  margin-left: 0px !important;
+}
+
+/* Because categories and tag fields are now hidden, margin-top is wrong and 
+the composer preview overlaps (and disables) the top-right buttons. So we need 
+to restore margin-top as-if there was no .with-tags class. */
+/* DOES NOT SEEM TO BE NECESSARY ANYMORE
+html.dpg.dpg-tag .d-editor-preview-wrapper {
+  margin-top: -43px;
+}
+*/
+
+/* Specific case of the composer in a tag page with interactMode="COMMENT".
+The composer is for creating a new topic, but, in js, we have changed the 
+"+ Create Topic" button to "+ Add Comment"
+- hide the composer topic title, because the topic title is set in js
+- hide the composer header, including text "Create a new topic" (meaningless 
+because we are creating a comment, not a topic) and the menu (with the "create
+ a new personal message" item) 
+- hide the composer tag chooser field: the first user to post a comment (so, to 
+create the first topic) should not be able to add a tag. What could this be 
+for? */
+html.dpg.dpg-tag.dpg-comment .composer-fields .title-input,
+html.dpg.dpg-tag.dpg-comment .composer-fields .reply-details,
+html.dpg.dpg-tag.dpg-comment .composer-fields .mini-tag-chooser {
+  display: none !important;
+}
+
+html.dpg.dpg-tag.dpg-comment .edit-title .d-editor-preview-wrapper {
+  margin-top: 0px;
+  /* Remove the negative top margin that was supposed to compensate for the header */
+}
+
+/*******************************************************************************
+	In topic page
+*******************************************************************************/
+
+// Disable topic fix width
+html.dpg.dpg-topic .post-stream .topic-body {
+  width: auto;
+  float: none;
+}
+
+// Disable loading-container fixed width
+html.dpg.dpg-topic .topic-area > .loading-container {
+  width: auto;
+}
+
+/* Fix gauge position at the bottom of the page  */
+@media screen and (min-width: 925px) {
+  html.dpg.dpg-topic .container.posts .topic-navigation {
+    position: static;
+  }
+}
+
+/* Fix the signup-cta alert message */
+html.dpg.dpg-topic .signup-cta {
+  width: auto; // Instead of 690px
+}
+
+/* Modify the topic title so that it sticks to the top of the screen */
+html.dpg.dpg-topic #topic-title {
+  position: sticky;
+  top: 60px;
+  background-color: var(--secondary);
+  z-index: 4;
+  padding-top: 8px;
+  h1 a {
+    font-size: 80%;
+  }
+}
+html.dpg.dpg-topic #topic-title:after {
+  // Required to have a border going all the way left and right
+  content: " ";
+  position: absolute;
+  right: -8px;
+  left: -8px;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  background-color: var(--secondary);
+  border-bottom: 1px solid var(--primary-low);
+  box-shadow: 0px 10px 10px -8px var(--secondary);
+  //outline: 2px solid var(--secondary);
+}
+html.dpg.dpg-topic .topic-body,
+html.dpg.dpg-topic .topic-avatar {
+  border-top: none;
+}
+html.dpg.dpg-topic #main-outlet {
+  padding-top: 0;
+}
+
+/* Hide the "Want to read more?" footer */
+html.dpg.dpg-topic .suggested-topics-message {
+  display: none;
+}
+
+/* Remove the "suggested topics" footer area (settings option) */
+html.dpg.dpg-topic.dpg-disable-sugg #suggested-topics {
+  display: none;
+}
+
+/* Hide the topic category: it makes no sense to show it, as the topic relates
+to the selected trigger ot the page on the left, not to a category */
+html.dpg.dpg-topic .topic-category > .badge-wrapper {
+  display: none;
+}
+
+html.dpg.dpg-topic .topic-category {
+  min-height: 10px;
+}
+
+/* Specific case of a topic page with interactMode="COMMENT": hide the topic 
+title  */
+html.dpg.dpg-topic.dpg-comment #topic-title {
+  display: none;
+}
+
+/* Specific case of the composer in a topic page with interactMode="COMMENT": 
+The composer is for creating a new post (answer).
+- hide the header, as it show the automatically set title */
+html.dpg.dpg-topic.dpg-comment .composer-fields .reply-details {
+  display: none !important;
+}
+
+/* Specific case of a topic page with interactMode="COMMENT": move the 
+topic-map from behind the first post to above the first post */
+html.dpg.dpg-topic.dpg-comment .topic-map {
+  position: absolute;
+  top: -150px;
+  left: 0px;
+  right: 0px;
+  z-index: 3;
+}
+
+/* Specific case of a topic page with interactMode="COMMENT": prevent title
+edition by hidding the edit icon. Hidding the icon is meaningless in the default
+case, because the title is hidden anyway. But it is useful if a trigger 
+Discourse itself has been set by the client */
+html.dpg.dpg-topic.dpg-comment .edit-topic {
+  display: none;
+}
+
+/* Specific case of a topic page with interactMode="COMMENT": style of the
+discpage title prefix */
+html.dpg.dpg-topic.dpg-discuss .fancy-title > .dpg-title-prefix {
+  color: lightgrey;
+  font-size: 80%;
+}
+
+html.dpg.dpg-topic .gap {
+  // Instead of: "width: calc( 45px + 690px + 2 * 11px)", otherwise it's too
+  // large
+  width: 100%;
+}
+
+/*******************************************************************************
+	Balloons
+*******************************************************************************/
+
+.dpg-balloon .svg-icon {
+  height: 18px;
+  width: 18px; // Required, otherwise balloon block is too wide on big titles
+  fill: #ff7800;
+  vertical-align: top;
+}
+
+/* Error message */
+.dpg-balloon-text > .dpg-error {
+  color: white;
+  background-color: red;
+  padding: 5px 8px;
+  font-size: 70%;
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
+.dpg-subsec {
+  /* Needed for :after positioning */
+  position: relative;
+}
+
+/*
+.dpg-balloon-parent.dpg-no-balloon.dpg-no-span,
+.dpg-balloon-parent.dpg-no-balloon .dpg-balloon-text {
+  cursor: pointer;
+}
+*/
+
+.dpg-balloon-text.dpg-highlighted {
+  background-color: yellow;
+  color: #222;
+  /* Need to take care of text color on yellow background */
+}
+// 6px is a minimum to cover the text highlight
+.dpg-balloon-text.dpg-highlighted img {
+  outline: 6px solid yellow;
+}
+// Required, because of margin collapsing on ".lightbox-wrapper img"
+// 6px is a minimum to cover the text highlight
+.dpg-balloon-text.dpg-highlighted a.lightbox {
+  outline: 6px solid yellow;
+}
+
+.dpg-subsec.dpg-highlighted:after {
+  position: absolute;
+  top: 0px;
+  bottom: -5px;
+  left: -15px;
+  content: '';
+  border-left: 8px solid yellow;
+}
+
+.dpg-icons {
+  // In case parent has "pointer-events: none", like in vue.js doc..
+  pointer-events: auto !important;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.dpg-badge {
+  display: inline-block;
+  margin-left: -2px;
+  border-radius: 10px;
+  padding: 3px 5px 2px 5px;
+  min-width: 8px;
+  vertical-align: top; // Align a badge to the preceding balloon
+  margin-top: 1px; // Compensate for balloon hard-coded top margin
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  text-align: center;
+  background-color: #aaa;
+  /* Reset */
+  line-height: 1;
+  font-weight: normal;
+  white-space: nowrap;
+  text-indent: 0;
+}
+
+// For the preview window only: display a fake balloon
+html.dpg .d-editor-preview .dpg-balloon-text:after {
+  content: "x";
+  font-size: 0px;
+  display: inline-block;
+  width: 18px;
+  height: 16px;
+  background-color: #ff7800;
+  border-radius: 10px;
+  vertical-align: top;
+  margin-left: 5px;
+}
+
+/******************************************************************************/

@@ -1,0 +1,30 @@
+
+
+html.dpg #dpg-container {
+  top: 3.66em;
+}
+html.dpg #dpg-ghost {
+  top: 3.66em;
+}
+html.dpg.dpg-topic #topic-title {
+  top: 3.66em;
+  padding: 0;
+}
+html.dpg.dpg-topic #topic-title:after {
+  right: -10px;
+  left: -10px;
+}
+
+// We need to remove "overflow:hidden" here, so that our sticky #topic-title 
+// works. HOWEVER, OVERFLOW:CLIP IS NOT SUPPORTED IN CHROME YET
+// https://stackoverflow.com/questions/43909940/why-does-overflowhidden-prevent-positionsticky-from-working
+// Chrome support soon: https://bugs.chromium.org/p/chromium/issues/detail?id=966283
+[class*="archetype-"] #main-outlet {
+  overflow: visible; // Fallback for Chrome. THIS MIGHT CAUSE PICTURES TO OVERFLOW
+  overflow: clip;
+}
+
+// Fix image width computation on mobile, to take the splitbar width into account
+html.dpg.dpg-topic .topic-body img {
+  max-width: calc(100vw - 20px - 23px);
+}
