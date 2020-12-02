@@ -29,17 +29,14 @@ html.dpg[data-dpg-layout="3"] {
 	Right
 *******************************************************************************/
 
-html.dpg[data-dpg-layout='0'] #dpg-right,
-html.dpg[data-dpg-layout='2'] #dpg-right {
-  display: none;
-}
-
-html.dpg[data-dpg-layout='3'] #dpg-right {
-  padding-left: 23px;
-}
-
-html.dpg[data-dpg-layout='3'].dpg-wide #dpg-right {
-  padding-left: 50%;
+html.dpg[data-dpg-layout='2'],
+html.dpg[data-dpg-layout='3'] {
+  #dpg-right {
+    padding-left: 23px;
+  }
+  &.dpg-wide #dpg-right {
+    padding-left: 50%;
+  }  
 }
 
 /*******************************************************************************
@@ -54,10 +51,9 @@ html.dpg #dpg-container {
   right: 0;
   bottom: 0;
   display: flex;
-  /* DIrection = row. Needed for the split bar */
-  z-index: 100;
+  z-index: 150; // Needed to be on top of the Discourse timeline
   overflow: hidden;
-  /* Required to hide the #dpg-ios-wrapper when hidden */
+  background-color: var(--secondary); // Needed to cover Discourse
 }
 
 /* For layout 1 */
@@ -102,7 +98,7 @@ html.dpg #dpg-ios-wrapper > iframe {
 
 html.dpg #dpg-left {
   flex: 1 0 0px;
-  overflow: auto;
+  overflow: auto;    
 }
 
 // No need for this, but sounds cleaner
