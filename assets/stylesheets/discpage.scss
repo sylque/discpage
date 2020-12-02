@@ -3,6 +3,7 @@
 *******************************************************************************/
 
 /* Disable centered header */
+// Potential fix for issue #20: html.dpg[data-dpg-layout='3'].dpg-wide header.d-header .wrap {
 html.dpg header.d-header .wrap {
   margin: unset;
   max-width: none;
