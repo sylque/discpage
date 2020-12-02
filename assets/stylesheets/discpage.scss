@@ -159,7 +159,7 @@ html.dpg #dpg-ghost {
   left: 100%;
   right: 0;
   bottom: 0;
-  background-color: white;
+  background-color: var(--secondary);
   z-index: 1000;
   animation-duration: 200ms;
   animation-timing-function: linear;
