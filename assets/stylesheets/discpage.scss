@@ -401,6 +401,9 @@ html.dpg.dpg-topic #topic-title {
   h1 a {
     font-size: 80%;
   }
+  #dpg-back {
+    margin-bottom: 8px;
+  }
 }
 html.dpg.dpg-topic #topic-title:after {
   // Required to have a border going all the way left and right
@@ -413,7 +416,8 @@ html.dpg.dpg-topic #topic-title:after {
   z-index: -1;
   background-color: var(--secondary);
   border-bottom: 1px solid var(--primary-low);
-  box-shadow: 0px 10px 10px -8px var(--secondary);
+  //box-shadow: 0px 10px 10px -8px var(--secondary);
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.25);
   //outline: 2px solid var(--secondary);
 }
 html.dpg.dpg-topic .topic-body,
