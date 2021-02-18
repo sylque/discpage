@@ -174,8 +174,10 @@ You can customize your Discourse header with links pointing on static pages. To 
 - `discpage balloon category`
 
   This will set the specified category (for example: _Orange Balloon_) to all
-  topics created through DiscPage balloons. This category will be hidden by 
-  DiscPage, so that users don't use it outside of static pages.
+  topics created from DiscPage balloons. This category will be hidden by 
+  DiscPage, so that users don't use it outside of balloons. Don't change the
+  default security settings for this category: users must have `Reply`
+  and `Create` access.
 
   In fact, you can set multiple categories in here. Let's call PageCat the
   category of the static page the balloon belongs to. If  there are more than 
