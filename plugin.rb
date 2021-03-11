@@ -5,8 +5,8 @@
 # url: https://github.com/sylque/discpage
 
 # Load styles
-register_asset "stylesheets/discpage.css"
-register_asset "stylesheets/discpage-mobile.css", :mobile
+register_asset "stylesheets/discpage.scss"
+register_asset "stylesheets/discpage-mobile.scss", :mobile
 
 # Load icons
 register_svg_icon "comment" if respond_to?(:register_svg_icon)
@@ -19,8 +19,8 @@ enabled_site_setting :discpage_enabled
 register_asset "javascripts/discourse/templates/components/create-topic-button.hbs"
 
 # In Discourse, editing the *last* post of a topic bumps the topic. A DiscPage
-# static page is almost always the only post of a topic (because further posts 
-# are never displayed). It means any minor edit in the static page will bump it. 
+# static page is almost always the only post of a topic (because further posts
+# are never displayed). It means any minor edit in the static page will bump it.
 # Hence this option to prevent static pages from ever getting bumped.
 # https://meta.discourse.org/t/discourse-no-bump-prevent-users-from-bumping-topics/78186
 # https://github.com/discourse/discourse-no-bump/blob/master/plugin.rb#L34
