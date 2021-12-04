@@ -379,10 +379,11 @@ html.dpg.dpg-topic .topic-area > .loading-container {
   width: auto;
 }
 
-/* Fix gauge position at the bottom of the page  */
+/* Fix gauge position. Fix for issue #27  */
 @media screen and (min-width: 925px) {
   html.dpg.dpg-topic .container.posts .topic-navigation {
-    position: static;
+    //position: static;
+    grid-area:auto !important;
   }
 }
 
