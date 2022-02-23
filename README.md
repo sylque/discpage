@@ -8,8 +8,6 @@ To discuss this plugin, see the [post on Meta](https://meta.discourse.org/t/disc
 
 Basic static page: http://www.docuss.org/t/discpage-demo
 
-Full website: https://www.castafiore.org
-
 ## Screenshots
 
 A static page:
