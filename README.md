@@ -6,7 +6,7 @@ To discuss this plugin, see the [post on Meta](https://meta.discourse.org/t/disc
 
 ## Demo
 
-Basic static page: http://www.docuss.org/t/discpage-demo
+Basic static page: https://www.castafiore.org/t/discpage-demo/79
 
 ## Screenshots
 
