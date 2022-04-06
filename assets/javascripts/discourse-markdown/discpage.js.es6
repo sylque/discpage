@@ -35,7 +35,7 @@ export function setup(helper) {
 
   //----------------------------------------------------------------------------
 
-  helper.whiteList(['span.dpg-balloon-text'])
+  helper.allowList(['span.dpg-balloon-text'])
 
   helper.registerPlugin(md => {
     md.inline.bbcode.ruler.push('dpgb', {
