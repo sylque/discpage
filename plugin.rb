@@ -1,6 +1,6 @@
 # name: discpage
 # about: Create static pages and attach discussions to them
-# version: 1.0.50
+# version: 1.0.51
 # authors: Sylvain Quendez
 # url: https://github.com/sylque/discpage
 

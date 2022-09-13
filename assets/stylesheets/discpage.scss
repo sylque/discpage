@@ -253,12 +253,14 @@ html:not([data-dpg-layout='0']) .dpg-buttons #dpg-edit-page-button {
 
 /* Hide dpg tags in tag filter dropdown */
 html.dpg li[data-name^='dpg-'] {
-  display: none;
+  display: none !important;
 }
 
-/* Hide dpg tags in tag chooser */
-html.dpg .mini-tag-chooser div[data-name^='dpg-'] > span.name,
-html.dpg .mini-tag-chooser .selected-tag[data-value^='dpg-'] {
+/* Hide dpg tag in tag chooser selection 
+  Do not hide summary[data-name^='dpg-'] span.formatted-selection, as it might
+  contain several tags.
+*/
+html.dpg .mini-tag-chooser .selected-content > button[data-value^='dpg-'] {
   display: none !important;
 }
 
