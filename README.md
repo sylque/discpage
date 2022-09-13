@@ -94,21 +94,36 @@ When **logged-in as admin**, you can perform the following actions:
   
 ### Adding discussion balloons to a static page
 
-To add a balloon, add `[dpgb id=myBalloonId][/dpgb]` to your topic text. For
-example:
+There are three types of balloon:
+
+#### 1. Balloon attached to a heading and the following paragraphs
+
+Add `[dpgb id=myBalloonId][/dpgb]` just after the heading, like this:
 
 ```
 ## Introduction [dpgb id=intro][/dpgb]
 ```
 
-The balloon id must contain only [a-zA-z_]. Unless you know what you're doing, 
-it should be **unique to the page**.
+The balloon id must contain only [a-zA-z0-9_], or only [a-z0-9_] if your Discourse 
+settings contain `force_lowercase_tags=true`. 
 
-When adding a balloon **to a heading**, selecting the balloon will highlight
-both the heading and the following subsection.
+Unless you know what you're doing, the balloon id  should be unique to the 
+page.
 
-To append a balloon to the page title, add `{dpg-title-balloon}`
-anywhere in the page. The balloon id will be `title`.
+#### 2. Balloon attached to a single paragraph
+
+Wrap the paragraph between `[dpgb id=myBalloonId]` and `[/dpgb]`, like this:
+
+```
+[dpgb id=paragraph12]Lorem ipsum dolor sit amet, consectetur adipiscing 
+elit[/dpgb]
+```
+
+#### 3. Balloon attached to the page title
+
+Add `{dpg-title-balloon}` anywhere in the page. 
+
+In that case, you don't get to set the balloon id: it will always  be `title`.
 
 ### Turning DiscPage off temporarily
 
