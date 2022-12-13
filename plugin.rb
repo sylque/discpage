@@ -15,9 +15,6 @@ register_svg_icon "history" if respond_to?(:register_svg_icon)
 # Register admin settings
 enabled_site_setting :discpage_enabled
 
-# Register the template to restore the create topic button
-register_asset "javascripts/discourse/templates/components/create-topic-button.hbs"
-
 # In Discourse, editing the *last* post of a topic bumps the topic. A DiscPage
 # static page is almost always the only post of a topic (because further posts
 # are never displayed). It means any minor edit in the static page will bump it.
