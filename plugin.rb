@@ -1,6 +1,6 @@
 # name: discpage
 # about: Create static pages and attach discussions to them
-# version: 1.0.52
+# version: 1.0.53
 # authors: Sylvain Quendez
 # url: https://github.com/sylque/discpage
 
@@ -16,7 +16,9 @@ register_svg_icon "history" if respond_to?(:register_svg_icon)
 enabled_site_setting :discpage_enabled
 
 # Register the template to restore the create topic button
-register_asset "javascripts/discourse/templates/components/create-topic-button.hbs"
+# NOT NEEDED ANYMORE: "Any hbs files under `assets/javascripts` will be
+# automatically compiled and included."
+#register_asset "javascripts/discourse/templates/components/create-topic-button.hbs"
 
 # In Discourse, editing the *last* post of a topic bumps the topic. A DiscPage
 # static page is almost always the only post of a topic (because further posts

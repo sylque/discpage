@@ -45,6 +45,7 @@ Set the category parameters as follow:
 
 In the Discourse Admin panel, open the Settings page and set:
 
+- `navigation menu` &rightarrow; Header Dropdown
 - `tagging enabled` &rightarrow; checked
 - `discpage enabled` &rightarrow; checked
 - `discpage page categories` &rightarrow; [static page category created above]

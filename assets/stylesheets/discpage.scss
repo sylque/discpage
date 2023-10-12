@@ -30,13 +30,17 @@ html.dpg[data-dpg-layout="3"] {
 	Right
 *******************************************************************************/
 
+// Fix for issue #35: we act on #main-outlet-wrapper directly instead 
+// of #dpg-right
 html.dpg[data-dpg-layout='2'],
 html.dpg[data-dpg-layout='3'] {
-  #dpg-right {
-    padding-left: 23px;
+  #main-outlet-wrapper {
+    padding-left: calc(23px + 5px);
+	box-sizing: content-box;
+	width: auto;
   }
-  &.dpg-wide #dpg-right {
-    padding-left: 50%;
+  &.dpg-wide #main-outlet-wrapper {
+    padding-left: calc(50% + 10px);
   }  
 }
 
