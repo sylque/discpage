@@ -197,16 +197,16 @@ html:not(.dpg) .dpg-on-off {
 	Static pages
 *******************************************************************************/
 
-#dpg-left #main-outlet {
+html.dpg #dpg-left #main-outlet {
   padding-top: 0px;
 }
 
-#dpg-left .cooked {
+html.dpg #dpg-left .cooked {
   overflow: visible;
   /* So that subsection highlighting is visible */
 }
 
-#dpg-left .topic-body {
+html.dpg #dpg-left .topic-body {
   /*
   max-width: calc(690px + (11px * 2));
   */
@@ -215,7 +215,7 @@ html:not(.dpg) .dpg-on-off {
 }
 
 /*Button */
-.dpg-page-content .dpg-buttons {
+html.dpg .dpg-page-content .dpg-buttons {
   position: sticky;
   top: 8px;
   /* Required */
@@ -227,24 +227,24 @@ html:not(.dpg) .dpg-on-off {
   opacity: 0.4;
 }
 
-.dpg-buttons.selected {
+html.dpg .dpg-buttons.selected {
   opacity: 0.8;
 }
 
-.dpg-page-content .dpg-buttons .btn {
+html.dpg .dpg-page-content .dpg-buttons .btn {
   padding: 6px 8px;
 }
 
-.dpg-buttons.selected #dpg-show-rev-nav {
+html.dpg .dpg-buttons.selected #dpg-show-rev-nav {
   background-color: orange;
 }
 
-html:not([data-dpg-layout='0']) .dpg-buttons #dpg-edit-title-button,
-html:not([data-dpg-layout='0']) .dpg-buttons #dpg-edit-page-button {
+html.dpg:not([data-dpg-layout='0']) .dpg-buttons #dpg-edit-title-button,
+html.dpg:not([data-dpg-layout='0']) .dpg-buttons #dpg-edit-page-button {
   display: none;
 }
 
-.dpg-buttons > .dpg-buttons-center > .dpg-date {
+html.dpg .dpg-buttons > .dpg-buttons-center > .dpg-date {
   background-color: orange;
   display: inline-block;
   line-height: 30px;
@@ -503,7 +503,7 @@ html.dpg.dpg-topic .gap {
 	Balloons
 *******************************************************************************/
 
-.dpg-balloon .svg-icon {
+html.dpg .dpg-balloon .svg-icon {
   height: 18px;
   width: 18px; // Required, otherwise balloon block is too wide on big titles
   fill: #ff7800;
@@ -511,7 +511,7 @@ html.dpg.dpg-topic .gap {
 }
 
 /* Error message */
-.dpg-balloon-text > .dpg-error {
+html.dpg .dpg-balloon-text > .dpg-error {
   color: white;
   background-color: red;
   padding: 5px 8px;
@@ -520,7 +520,7 @@ html.dpg.dpg-topic .gap {
   border-radius: 10px;
 }
 
-.dpg-subsec {
+html.dpg .dpg-subsec {
   /* Needed for :after positioning */
   position: relative;
 }
@@ -532,22 +532,22 @@ html.dpg.dpg-topic .gap {
 }
 */
 
-.dpg-balloon-text.dpg-highlighted {
+html.dpg .dpg-balloon-text.dpg-highlighted {
   background-color: yellow;
   color: #222;
   /* Need to take care of text color on yellow background */
 }
 // 6px is a minimum to cover the text highlight
-.dpg-balloon-text.dpg-highlighted img {
+html.dpg .dpg-balloon-text.dpg-highlighted img {
   outline: 6px solid yellow;
 }
 // Required, because of margin collapsing on ".lightbox-wrapper img"
 // 6px is a minimum to cover the text highlight
-.dpg-balloon-text.dpg-highlighted a.lightbox {
+html.dpg .dpg-balloon-text.dpg-highlighted a.lightbox {
   outline: 6px solid yellow;
 }
 
-.dpg-subsec.dpg-highlighted:after {
+html.dpg .dpg-subsec.dpg-highlighted:after {
   position: absolute;
   top: 0px;
   bottom: -5px;
@@ -556,14 +556,14 @@ html.dpg.dpg-topic .gap {
   border-left: 8px solid yellow;
 }
 
-.dpg-icons {
+html.dpg .dpg-icons {
   // In case parent has "pointer-events: none", like in vue.js doc..
   pointer-events: auto !important;
   cursor: pointer;
   margin-left: 5px;
 }
 
-.dpg-badge {
+html.dpg .dpg-badge {
   display: inline-block;
   margin-left: -2px;
   border-radius: 10px;

@@ -15,14 +15,17 @@ html.dpg.dpg-topic #topic-title:after {
   left: -10px;
 }
 
+/// NOT NEEDED ANYMORE? TENTATIVE FIX FOR #37
 // We need to remove "overflow:hidden" here, so that our sticky #topic-title 
 // works. HOWEVER, OVERFLOW:CLIP IS NOT SUPPORTED IN CHROME YET
 // https://stackoverflow.com/questions/43909940/why-does-overflowhidden-prevent-positionsticky-from-working
 // Chrome support soon: https://bugs.chromium.org/p/chromium/issues/detail?id=966283
-[class*="archetype-"] #main-outlet {
+/*
+html.dpg [class*="archetype-"] #main-outlet {
   overflow: visible; // Fallback for Chrome. THIS MIGHT CAUSE PICTURES TO OVERFLOW
   overflow: clip;
 }
+*/
 
 // Fix image width computation on mobile, to take the splitbar width into account
 html.dpg.dpg-topic .topic-body img {
