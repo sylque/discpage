@@ -447,7 +447,7 @@ html.dpg.dpg-topic.dpg-disable-sugg #suggested-topics {
 
 /* Hide the topic category: it makes no sense to show it, as the topic relates
 to the selected trigger ot the page on the left, not to a category */
-html.dpg.dpg-topic .topic-category > .badge-wrapper {
+html.dpg.dpg-topic .topic-category {
   display: none;
 }
 
