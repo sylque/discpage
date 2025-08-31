@@ -1,4 +1,8 @@
-> ⚠️ Deprecated: This plugin is no longer maintained as of 2025-08-31.
+>## ⚠️ Deprecated
+>This plugin is no longer maintained and **does not work with current versions of Discourse**.  
+We recommend removing it from production sites to avoid upgrade issues.  
+Thank you to everyone who used and contributed to this plugin over the years. 🙏
+
 
 # DiscPage
 
