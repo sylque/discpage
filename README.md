@@ -1,3 +1,5 @@
+> ⚠️ Deprecated: This plugin is no longer maintained as of 2025-08-31.
+
 # DiscPage
 
 A Discourse plugin to create static pages and insert discussion balloons in the text.
